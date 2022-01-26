@@ -1,9 +1,4 @@
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	useNavigate,
-} from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Home from './components/Home';
 import NewTodo from './components/NewTodo';
@@ -44,8 +39,7 @@ function App() {
 		const newTodo = { id, todo: todo };
 		const allPosts = [...todolists, newTodo];
 		try {
-			const { data } = await axios.post('/api/todos', { todo: todo });
-			console.log(data);
+			await axios.post('/api/todos', { todo: todo });
 		} catch (err) {
 			console.log(err);
 		}
@@ -56,20 +50,18 @@ function App() {
 
 	const handleDelete = async (id) => {
 		const postTodolist = todolists.filter((todoitem) => todoitem.id !== id);
-		console.log('id', id);
-		console.log('postTodolist', postTodolist);
 		setTodolists(postTodolist);
 		try {
 			await axios.delete(`/api/todos/${id}`);
 		} catch (err) {
-			console.log('throw erro', err);
+			console.log(err);
 		}
 		navigate('/');
 	};
 
 	return (
 		<Container maxWidth='sm'>
-			<Paper variant='outlined' elevation={24} sx={{ minHeight: 700 }}>
+			<Paper elevation={24} sx={{ minHeight: 700 }}>
 				<Routes>
 					<Route
 						path='/'

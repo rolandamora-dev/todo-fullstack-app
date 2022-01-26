@@ -12,7 +12,7 @@ const Home = ({ todolists }) => {
 					<Todolist todolists={todolists} />
 				) : (
 					<Box sx={{ paddingY: 5 }}>
-						<Typography>No todolists to display.</Typography>
+						<Typography>No to-do lists to display.</Typography>
 					</Box>
 				)}
 			</Container>
