@@ -17,7 +17,7 @@ In the root folder, create a config file:
 .env
 ```
 
-and add following variables:
+and add following variables - with your own DB configurations:
 
 ```
 PORT=5000
