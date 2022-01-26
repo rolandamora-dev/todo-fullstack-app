@@ -18,7 +18,7 @@ const TodoPage = ({ todolists, handleEdit }) => {
 					{todoitem && (
 						<>
 							<Box sx={{ paddingY: 5 }}>
-								<Typography>Add to-do list</Typography>
+								<Typography>Edit to-do list</Typography>
 								<form
 									onSubmit={(event) => {
 										event.preventDefault();
