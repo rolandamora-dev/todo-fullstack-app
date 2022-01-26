@@ -11,31 +11,29 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-const TodoItem = ({ todoitem }) => {
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
+const TodoItem = ({ todoitem, handleDelete }) => {
 	return (
-		<article className='todoitem'>
-			{/* <Link to={`todo/${todoitem.id}`}>
-				<Box sx={{ paddingTop: 1 }}>
-					<Typography>
-						<TaskIcon />
-						{todoitem.todo}
-					</Typography>
-				</Box>
-			</Link> */}
-
-			{/* <Link href={`todo/${todoitem.id}`} underline='hover'>
-				{todoitem.todo}
-			</Link> */}
-
+		<div>
 			<ListItem disablePadding>
 				<ListItemButton component={Link} to={`todo/${todoitem.id}`}>
 					<ListItemIcon>
 						<TaskIcon />
 					</ListItemIcon>
+					<ListItemText primary={todoitem.id} />
 					<ListItemText primary={todoitem.todo} />
 				</ListItemButton>
+				<IconButton component={Link} to={`todo/${todoitem.id}`}>
+					<EditIcon />
+				</IconButton>
+				<IconButton onClick={() => handleDelete(todoitem.id)}>
+					<DeleteIcon />
+				</IconButton>
 			</ListItem>
-		</article>
+		</div>
 	);
 };
 

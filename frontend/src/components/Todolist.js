@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
-const Todolist = ({ todolists }) => {
+const Todolist = ({ todolists, handleDelete }) => {
 	return (
 		<>
 			<Box sx={{ paddingTop: 5 }}>
@@ -12,7 +12,11 @@ const Todolist = ({ todolists }) => {
 			</Box>
 			<List>
 				{todolists.map((todoitem) => (
-					<TodoItem key={todoitem.id} todoitem={todoitem} />
+					<TodoItem
+						key={todoitem.id}
+						todoitem={todoitem}
+						handleDelete={handleDelete}
+					/>
 				))}
 			</List>
 		</>

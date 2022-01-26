@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import Missing from './components/Missing';
 
 function App() {
 	const [todolists, setTodolists] = useState([]);
@@ -37,13 +38,13 @@ function App() {
 		e.preventDefault();
 		const id = todolists.length ? todolists[todolists.length - 1].id + 1 : 1;
 		const newTodo = { id, todo: todo };
-		const allPosts = [...todolists, newTodo];
+		const allTodos = [...todolists, newTodo];
 		try {
 			await axios.post('/api/todos', { todo: todo });
 		} catch (err) {
 			console.log(err);
 		}
-		setTodolists(allPosts);
+		setTodolists(allTodos);
 		setTodo('');
 		navigate('/');
 	};
@@ -59,6 +60,21 @@ function App() {
 		navigate('/');
 	};
 
+	const handleEdit = async (id, todo) => {
+		let todoItem = { id, todo };
+		try {
+			const { data } = await axios.put(`/api/todos/${id}`, todoItem);
+			const notUpdatedlist = todolists.filter(
+				(item) => parseInt(item.id) !== parseInt(id)
+			);
+			const allTodos = [...notUpdatedlist, todoItem];
+			setTodolists(allTodos);
+		} catch (err) {
+			console.log(err);
+		}
+		navigate('/');
+	};
+
 	return (
 		<Container maxWidth='sm'>
 			<Paper elevation={24} sx={{ minHeight: 700 }}>
@@ -67,7 +83,12 @@ function App() {
 						path='/'
 						element={<Layout search={search} setSearch={setSearch} />}
 					>
-						<Route index element={<Home todolists={searchResults} />} />
+						<Route
+							index
+							element={
+								<Home todolists={searchResults} handleDelete={handleDelete} />
+							}
+						/>
 						<Route path='todo'>
 							<Route
 								index
@@ -82,10 +103,11 @@ function App() {
 							<Route
 								path=':id'
 								element={
-									<TodoPage todolists={todolists} handleDelete={handleDelete} />
+									<TodoPage todolists={todolists} handleEdit={handleEdit} />
 								}
 							/>
 						</Route>
+						<Route path='*' element={<Missing />} />
 					</Route>
 				</Routes>
 			</Paper>

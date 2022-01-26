@@ -5,6 +5,16 @@ used as a requirement)
 
 ## Install Dependencies
 
+Not working with (npm install -- prefix frontend) command - for fixing,
+temporarily run command below:
+
+```
+cd frontend
+npm install
+```
+
+Go back to the root folder and run command below:
+
 ```
 npm install
 ```

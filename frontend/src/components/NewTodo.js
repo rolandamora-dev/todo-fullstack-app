@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import IconButton from '@mui/material/IconButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 const NewTodo = ({ handleSubmit, todo, setTodo }) => {
 	return (
@@ -21,7 +22,7 @@ const NewTodo = ({ handleSubmit, todo, setTodo }) => {
 							sx={{ width: 450 }}
 						/>
 						<IconButton aria-label='add' type='submit'>
-							<AddCircleIcon />
+							<SaveIcon />
 						</IconButton>
 					</form>
 				</Box>
