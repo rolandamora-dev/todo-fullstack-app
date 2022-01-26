@@ -23,7 +23,6 @@ const TodoItem = ({ todoitem, handleDelete }) => {
 					<ListItemIcon>
 						<TaskIcon />
 					</ListItemIcon>
-					<ListItemText primary={todoitem.id} />
 					<ListItemText primary={todoitem.todo} />
 				</ListItemButton>
 				<IconButton component={Link} to={`todo/${todoitem.id}`}>
